@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:17
+    container_name: biblioteca-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-biblioteca}
+      POSTGRES_USER: ${DB_USER:-biblioteca}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-biblioteca123}
+    ports:
+      - "5432:5432"
+    volumes:
+      - biblioteca-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-biblioteca} -d ${DB_NAME:-biblioteca}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    container_name: biblioteca-app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-biblioteca}
+      DB_USER: ${DB_USER:-biblioteca}
+      DB_PASSWORD: ${DB_PASSWORD:-biblioteca123}
+      JWT_SECRET: ${JWT_SECRET:-dev-only-secret-change-me-in-production-0123456789}
+    ports:
+      - "8080:8080"
+
+volumes:
+  biblioteca-data:
