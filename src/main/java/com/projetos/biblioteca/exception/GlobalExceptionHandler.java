@@ -1,0 +1,37 @@
+package com.projetos.biblioteca.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(ConflitoException.class)
+    public ProblemDetail conflito(ConflitoException e) {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, e.getMessage());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ProblemDetail validacao(MethodArgumentNotValidException e) {
+        Map<String, String> erros = new LinkedHashMap<>();
+
+        e.getBindingResult().getFieldErrors()
+                .forEach(t -> erros.put(t.getField(), t.getDefaultMessage()));
+
+        var problema = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "Dados inválidos");
+        problema.setProperty("erros", erros);
+        return problema;
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ProblemDetail credenciaisInvalidas(BadCredentialsException e) {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, "Dados Inválidos");
+    }
+}

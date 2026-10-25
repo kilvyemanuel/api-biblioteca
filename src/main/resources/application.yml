@@ -31,3 +31,7 @@ server:
   port: 8080
   error:
     include-stacktrace: never
+
+jwt:
+  secret: ${JWT_SECRET:dev-only-secret-change-me-in-production-0123456789}
+  expiration-ms: ${JWT_EXPIRATION_MS:3600000}
