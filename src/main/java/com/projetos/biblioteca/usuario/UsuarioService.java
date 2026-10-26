@@ -2,6 +2,7 @@ package com.projetos.biblioteca.usuario;
 
 import com.projetos.biblioteca.auth.RegistroRequestDTO;
 import com.projetos.biblioteca.exception.ConflitoException;
+import com.projetos.biblioteca.exception.RecursoNaoEncontradoException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,11 @@ public class UsuarioService {
 
         usuarioRepository.save(usuario);
         return UsuarioResponseDTO.de(usuario);
+    }
+
+    @Transactional(readOnly = true)
+    public Usuario buscarPorEmail(String email) {
+        return usuarioRepository.findByEmail(email)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Usuário não encontrado"));
     }
 }
