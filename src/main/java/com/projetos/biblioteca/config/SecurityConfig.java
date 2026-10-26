@@ -4,6 +4,7 @@ import com.projetos.biblioteca.auth.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
@@ -30,8 +31,15 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/exemplares").hasRole("BIBLIOTECARIO")
+                        .requestMatchers(HttpMethod.POST, "/categorias/**" , "/autores/**", "/livros/**").hasRole("BIBLIOTECARIO")
+                        .requestMatchers(HttpMethod.PUT, "/categorias/**", "/autores/**", "/livros/**").hasRole("BIBLIOTECARIO")
+                        .requestMatchers(HttpMethod.DELETE, "/categorias/**", "/autores/**", "/livros/**").hasRole("BIBLIOTECARIO")
+                        .requestMatchers("/livros/{livroId}/exemplares").hasRole("BIBLIOTECARIO")
+                        .requestMatchers(HttpMethod.GET, "/categorias/**", "/autores/**", "/livros/**").permitAll()
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(e -> e
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
