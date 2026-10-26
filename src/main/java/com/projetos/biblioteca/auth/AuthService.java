@@ -2,7 +2,6 @@ package com.projetos.biblioteca.auth;
 
 import com.projetos.biblioteca.usuario.UsuarioResponseDTO;
 import com.projetos.biblioteca.usuario.UsuarioService;
-import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

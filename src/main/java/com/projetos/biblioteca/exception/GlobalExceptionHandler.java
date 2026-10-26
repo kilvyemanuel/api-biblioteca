@@ -5,7 +5,7 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.InsufficientAuthenticationException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -40,17 +40,17 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BadCredentialsException.class)
     public ProblemDetail credenciaisInvalidas(BadCredentialsException e) {
-        return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, "Dados Inválidos");
+        return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, "Dados inválidos");
     }
 
-    @ExceptionHandler(InsufficientAuthenticationException.class)
-    public ProblemDetail semAutorizacao(InsufficientAuthenticationException e) {
+    @ExceptionHandler(AuthenticationException.class)
+    public ProblemDetail semAutorizacao(AuthenticationException e) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, "Não autorizado");
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ProblemDetail acessoNegado(AccessDeniedException e) {
-        return ProblemDetail.forStatusAndDetail(HttpStatus.FORBIDDEN, "Acesso Negado");
+        return ProblemDetail.forStatusAndDetail(HttpStatus.FORBIDDEN, "Acesso negado");
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
