@@ -1,5 +1,6 @@
 package com.projetos.biblioteca.usuario;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,14 +23,14 @@ public class AdminUsuarioController {
 
     @PatchMapping("/usuarios/{id}/papel")
     public UsuarioAdminResponseDTO alterarPapel(@PathVariable Long id,
-                                                @RequestBody AlterarPapelRequestDTO req,
+                                                @Valid @RequestBody AlterarPapelRequestDTO req,
                                                 Authentication auth) {
         return usuarioService.alterarPapel(id, req.papel(), auth.getName());
     }
 
     @PatchMapping("/usuarios/{id}/ativo")
     public UsuarioAdminResponseDTO alterarAtivo(@PathVariable Long id,
-                                                @RequestBody AlterarAtivoRequestDTO req,
+                                                @Valid @RequestBody AlterarAtivoRequestDTO req,
                                                 Authentication auth) {
         return usuarioService.alterarAtivo(id, req.ativo(), auth.getName());
     }
