@@ -30,7 +30,7 @@ public class Livro {
 
     @Min(value = 1, message = "O ano de publicação deve ser maior que 0")
     @Column(name = "ano_publicacao")
-    private Integer anoPublicacao;
+    private Short anoPublicacao;
 
     @Column(columnDefinition = "TEXT")
     private String sinopse;
