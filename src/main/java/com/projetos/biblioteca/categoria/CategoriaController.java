@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/categorias")
 @RequiredArgsConstructor
 public class CategoriaController {
-    public final CategoriaService categoriaService;
+    private final CategoriaService categoriaService;
 
     @GetMapping
     public List<CategoriaResponseDTO> listar() {
