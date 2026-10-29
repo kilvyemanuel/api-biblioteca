@@ -12,13 +12,16 @@ public record LivroDetalheResponseDTO(
         Short anoPublicacao,
         String sinopse,
         CategoriaResponseDTO categoria,
-        List<AutorResponseDTO> autores
+        List<AutorResponseDTO> autores,
+        long totalExemplares,
+        long exemplaresDisponiveis
 ) {
-    public static LivroDetalheResponseDTO de(Livro l) {
+    public static LivroDetalheResponseDTO de(Livro l, long totalExemplares, long exemplaresDisponiveis) {
         return new LivroDetalheResponseDTO(
                 l.getId(), l.getTitulo(), l.getIsbn(), l.getAnoPublicacao(),
                 l.getSinopse(), CategoriaResponseDTO.de(l.getCategoria()),
-                l.getAutores().stream().map(AutorResponseDTO::de).toList()
+                l.getAutores().stream().map(AutorResponseDTO::de).toList(),
+                totalExemplares, exemplaresDisponiveis
         );
     }
 }

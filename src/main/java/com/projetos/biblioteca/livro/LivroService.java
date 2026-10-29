@@ -37,7 +37,9 @@ public class LivroService {
         Livro livro = livroRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Livro não encontrado"));
 
-        return LivroDetalheResponseDTO.de(livro);
+        long totalExemplares = exemplarRepository.countByLivroId(livro.getId());
+        long exemplaresDisponiveis = exemplarRepository.countByLivroIdAndStatus(livro.getId(), StatusExemplar.DISPONIVEL);
+        return LivroDetalheResponseDTO.de(livro, totalExemplares, exemplaresDisponiveis);
     }
 
     @Transactional
@@ -65,7 +67,7 @@ public class LivroService {
         livro.setCategoria(categoria);
         livro.setAutores(autores);
 
-        return LivroDetalheResponseDTO.de(livroRepository.save(livro));
+        return LivroDetalheResponseDTO.de(livroRepository.save(livro), 0, 0);
     }
 
     @Transactional
@@ -92,7 +94,9 @@ public class LivroService {
         livro.setCategoria(categoria);
         livro.setAutores(autores);
 
-        return LivroDetalheResponseDTO.de(livroRepository.save(livro));
+        long totalExemplares = exemplarRepository.countByLivroId(livro.getId());
+        long exemplaresDisponiveis = exemplarRepository.countByLivroIdAndStatus(livro.getId(), StatusExemplar.DISPONIVEL);
+        return LivroDetalheResponseDTO.de(livroRepository.save(livro), totalExemplares, exemplaresDisponiveis);
     }
 
     @Transactional
