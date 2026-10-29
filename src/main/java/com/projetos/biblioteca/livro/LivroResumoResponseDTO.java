@@ -9,13 +9,15 @@ public record LivroResumoResponseDTO(
         String titulo,
         String isbn,
         String categoria,
-        List<String> autores
+        List<String> autores,
+        long exemplaresDisponives
 ) {
-    public static LivroResumoResponseDTO de(Livro l) {
+    public static LivroResumoResponseDTO de(Livro l, long exemplaresDisponives) {
         return new LivroResumoResponseDTO(
                 l.getId(), l.getTitulo(), l.getIsbn(),
                 l.getCategoria().getNome(),
-                l.getAutores().stream().map(Autor::getNome).toList()
+                l.getAutores().stream().map(Autor::getNome).toList(),
+                exemplaresDisponives
         );
     }
 }

@@ -7,6 +7,7 @@ import com.projetos.biblioteca.categoria.CategoriaRepository;
 import com.projetos.biblioteca.exception.ConflitoException;
 import com.projetos.biblioteca.exception.RecursoNaoEncontradoException;
 import com.projetos.biblioteca.exemplar.ExemplarRepository;
+import com.projetos.biblioteca.exemplar.StatusExemplar;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +28,8 @@ public class LivroService {
     @Transactional(readOnly = true)
     public Page<LivroResumoResponseDTO> listar(LivroFiltroDTO filtro, Pageable pageable) {
         return livroRepository.findAll(LivroSpecs.comFiltro(filtro), pageable)
-                .map(LivroResumoResponseDTO::de);
+                .map(livro -> LivroResumoResponseDTO.de
+                        (livro, exemplarRepository.countByLivroIdAndStatus(livro.getId(), StatusExemplar.DISPONIVEL)));
     }
 
     @Transactional(readOnly = true)
