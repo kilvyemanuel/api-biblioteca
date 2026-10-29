@@ -1,5 +1,6 @@
 package com.projetos.biblioteca.livro;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,13 +26,13 @@ public class LivroController {
     }
 
     @PostMapping
-    public ResponseEntity<LivroDetalheResponseDTO> criar(@RequestBody LivroRequestDTO req) {
+    public ResponseEntity<LivroDetalheResponseDTO> criar(@Valid @RequestBody LivroRequestDTO req) {
         return ResponseEntity.status(HttpStatus.CREATED).body(livroService.criar(req));
     }
 
     @PutMapping("/{id}")
     public LivroDetalheResponseDTO atualizar(@PathVariable Long id,
-                                             @RequestBody LivroRequestDTO req) {
+                                             @Valid @RequestBody LivroRequestDTO req) {
         return livroService.atualizar(id, req);
     }
 
