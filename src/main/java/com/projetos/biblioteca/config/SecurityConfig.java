@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/exemplares").hasRole("BIBLIOTECARIO")
+                        .requestMatchers("/exemplares/**").hasRole("BIBLIOTECARIO")
                         .requestMatchers(HttpMethod.POST, "/categorias/**" , "/autores/**", "/livros/**").hasRole("BIBLIOTECARIO")
                         .requestMatchers(HttpMethod.PUT, "/categorias/**", "/autores/**", "/livros/**").hasRole("BIBLIOTECARIO")
                         .requestMatchers(HttpMethod.DELETE, "/categorias/**", "/autores/**", "/livros/**").hasRole("BIBLIOTECARIO")
