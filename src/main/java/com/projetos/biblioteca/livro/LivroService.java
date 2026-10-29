@@ -6,6 +6,7 @@ import com.projetos.biblioteca.categoria.Categoria;
 import com.projetos.biblioteca.categoria.CategoriaRepository;
 import com.projetos.biblioteca.exception.ConflitoException;
 import com.projetos.biblioteca.exception.RecursoNaoEncontradoException;
+import com.projetos.biblioteca.exemplar.ExemplarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,7 @@ public class LivroService {
     private final LivroRepository livroRepository;
     private final CategoriaRepository categoriaRepository;
     private final AutorRepository autorRepository;
+    private final ExemplarRepository exemplarRepository;
 
     @Transactional(readOnly = true)
     public Page<LivroResumoResponseDTO> listar(LivroFiltroDTO filtro, Pageable pageable) {
@@ -91,9 +93,13 @@ public class LivroService {
         return LivroDetalheResponseDTO.de(livroRepository.save(livro));
     }
 
+    @Transactional
     public void remover(Long id) {
         Livro livro = livroRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Livro não encontrado"));
+
+        if (exemplarRepository.existsByLivroId(id))
+            throw new ConflitoException("Não foi possível apagar esse livro pois tem exemplares associados a ele");
 
         livroRepository.delete(livro);
     }

@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface ExemplarRepository extends JpaRepository<Exemplar, Long> {
     List<Exemplar> findByLivroId(Long livroId);
+    boolean existsByLivroId(Long livroId);
     boolean existsByCodigo(String codigo);
 }
