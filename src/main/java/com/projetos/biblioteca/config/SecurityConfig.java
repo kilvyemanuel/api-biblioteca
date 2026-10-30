@@ -42,6 +42,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/categorias/**", "/autores/**", "/livros/**").hasRole("BIBLIOTECARIO")
                         .requestMatchers(HttpMethod.DELETE, "/categorias/**", "/autores/**", "/livros/**").hasRole("BIBLIOTECARIO")
                         .requestMatchers("/livros/{livroId}/exemplares").hasRole("BIBLIOTECARIO")
+                        .requestMatchers("/emprestimos", "/emprestimos/*/devolucao", "/emprestimos/*/pagamento-multa").hasRole("BIBLIOTECARIO")
                         .requestMatchers(HttpMethod.GET, "/categorias/**", "/autores/**", "/livros/**").permitAll()
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()

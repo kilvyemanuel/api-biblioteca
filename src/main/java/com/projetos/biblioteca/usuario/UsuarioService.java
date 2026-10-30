@@ -42,6 +42,12 @@ public class UsuarioService {
     }
 
     @Transactional(readOnly = true)
+    public Usuario buscarPorId(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Usuário não encontrado"));
+    }
+
+    @Transactional(readOnly = true)
     public Page<UsuarioAdminResponseDTO> listar(Papel papel, Boolean ativo, Pageable pageable) {
         if (papel != null && ativo != null) {
             return usuarioRepository.findByPapelAndAtivo(papel, ativo, pageable).map(UsuarioAdminResponseDTO::de);
