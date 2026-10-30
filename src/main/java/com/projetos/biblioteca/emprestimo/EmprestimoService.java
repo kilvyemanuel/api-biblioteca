@@ -11,6 +11,7 @@ import com.projetos.biblioteca.usuario.Papel;
 import com.projetos.biblioteca.usuario.Usuario;
 import com.projetos.biblioteca.usuario.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -70,5 +71,24 @@ public class EmprestimoService {
             throw new RecursoNaoEncontradoException("Emprestimo não encontrado");
 
         return EmprestimoResponseDTO.de(emprestimo);
+    }
+
+    @Transactional
+    public EmprestimoResponseDTO devolver(Long id) {
+        Emprestimo emprestimo = emprestimoRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Emprestimo não encontrado"));
+
+        if (emprestimo.getStatus() != StatusEmprestimo.ATIVO)
+            throw new RegraDeNegocioException("O emprestimo não está ativo");
+
+        emprestimo.getExemplar().setStatus(StatusExemplar.DISPONIVEL);
+        emprestimo.setDataDevolucao(LocalDate.now());
+        emprestimo.setStatus(StatusEmprestimo.DEVOLVIDO);
+
+        if (emprestimo.estaAtrasado(LocalDate.now())) {
+            emprestimo.setMulta(properties.multaPorDia().multiply(BigDecimal.valueOf(emprestimo.diasDeAtraso(LocalDate.now()))));
+        }
+
+        return EmprestimoResponseDTO.de(emprestimoRepository.save(emprestimo));
     }
 }

@@ -36,6 +36,11 @@ public class EmprestimoController {
         return emprestimoService.buscar(id, usuarioLogado(auth));
     }
 
+    @PostMapping("/{id}/devolucao")
+    public EmprestimoResponseDTO devolver(@PathVariable Long id) {
+        return emprestimoService.devolver(id);
+    }
+
     private Usuario usuarioLogado(Authentication auth) {
         return usuarioService.buscarPorEmail(auth.getName());
     }
