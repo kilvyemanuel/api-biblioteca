@@ -1,9 +1,6 @@
 package com.projetos.biblioteca.livro;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.util.Set;
 
@@ -21,7 +18,7 @@ public record LivroRequestDTO(
 
         String sinopse,
 
-        @NotBlank(message = "O livro precisa ter uma categoria")
+        @NotNull(message = "O ID da categoria é obrigatório")
         Long categoriaId,
 
         @NotEmpty(message = "O livro precisa ter pelo menos um autor")
