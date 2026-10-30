@@ -47,6 +47,11 @@ public class EmprestimoController {
         return emprestimoService.renovar(id, usuarioLogado(auth));
     }
 
+    @PostMapping("/{id}/pagamento-multa")
+    public EmprestimoResponseDTO pagarMulta(@PathVariable Long id) {
+        return emprestimoService.pagarMulta(id);
+    }
+
     private Usuario usuarioLogado(Authentication auth) {
         return usuarioService.buscarPorEmail(auth.getName());
     }

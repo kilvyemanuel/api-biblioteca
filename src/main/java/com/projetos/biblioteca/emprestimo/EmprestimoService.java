@@ -119,4 +119,20 @@ public class EmprestimoService {
 
         return EmprestimoResponseDTO.de(emprestimoRepository.save(emprestimo));
     }
+
+    @Transactional
+    public EmprestimoResponseDTO pagarMulta(Long id) {
+        Emprestimo emprestimo = emprestimoRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Emprestimo não encontrado"));
+
+        if (emprestimo.isMultaPaga())
+            throw new RegraDeNegocioException("Pagamento não aceito, pois a multa já foi paga");
+
+        if (emprestimo.getMulta().compareTo(BigDecimal.ZERO) == 0)
+            throw new RegraDeNegocioException("Pagamento não aceito, pois a multa é de R$0.0");
+
+        emprestimo.setMultaPaga(true);
+
+        return EmprestimoResponseDTO.de(emprestimoRepository.save(emprestimo));
+    }
 }
