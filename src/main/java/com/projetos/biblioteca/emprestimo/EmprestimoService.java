@@ -97,6 +97,9 @@ public class EmprestimoService {
         Emprestimo emprestimo = emprestimoRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Emprestimo não encontrado"));
 
+        if (solicitante.getPapel() == Papel.MEMBRO && emprestimo.getUsuario().getId() != solicitante.getId())
+            throw new RecursoNaoEncontradoException("Emprestimo não encontrado");
+
         if (emprestimo.getStatus() != StatusEmprestimo.ATIVO)
             throw new RegraDeNegocioException("O emprestimo não está ativo");
 
