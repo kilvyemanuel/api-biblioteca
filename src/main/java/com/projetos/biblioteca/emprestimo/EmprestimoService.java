@@ -9,6 +9,8 @@ import com.projetos.biblioteca.exemplar.StatusExemplar;
 import com.projetos.biblioteca.usuario.Usuario;
 import com.projetos.biblioteca.usuario.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,5 +47,15 @@ public class EmprestimoService {
 
         exemplar.setStatus(StatusExemplar.EMPRESTADO);
         return EmprestimoResponseDTO.de(emprestimoRepository.save(emprestimo));
+    }
+
+    @Transactional(readOnly = true)
+    public Page<EmprestimoResponseDTO> listarDoUsuario(Long usuarioId, StatusEmprestimo status, Pageable pageable) {
+        if (status != null)
+            return emprestimoRepository.findByUsuarioIdAndStatus(usuarioId, status, pageable)
+                    .map(EmprestimoResponseDTO::de);
+
+        return emprestimoRepository.findByUsuarioId(usuarioId, pageable)
+                .map(EmprestimoResponseDTO::de);
     }
 }

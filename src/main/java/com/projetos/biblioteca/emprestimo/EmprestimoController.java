@@ -1,22 +1,36 @@
 package com.projetos.biblioteca.emprestimo;
 
+import com.projetos.biblioteca.usuario.Usuario;
+import com.projetos.biblioteca.usuario.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/emprestimos")
 @RequiredArgsConstructor
 public class EmprestimoController {
     private final EmprestimoService emprestimoService;
+    private final UsuarioService usuarioService;
 
     @PostMapping
     public ResponseEntity<EmprestimoResponseDTO> emprestar(@Valid @RequestBody EmprestimoRequestDTO req) {
         return ResponseEntity.status(HttpStatus.CREATED).body(emprestimoService.emprestar(req));
+    }
+
+    @GetMapping("/meus")
+    public Page<EmprestimoResponseDTO> meus(@RequestParam(required = false) StatusEmprestimo status,
+                                            Pageable pageable,
+                                            Authentication auth) {
+        return emprestimoService.listarDoUsuario(usuarioLogado(auth).getId(), status, pageable);
+    }
+
+    private Usuario usuarioLogado(Authentication auth) {
+        return usuarioService.buscarPorEmail(auth.getName());
     }
 }
