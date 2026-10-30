@@ -91,4 +91,29 @@ public class EmprestimoService {
 
         return EmprestimoResponseDTO.de(emprestimoRepository.save(emprestimo));
     }
+
+    @Transactional
+    public EmprestimoResponseDTO renovar(Long id, Usuario solicitante) {
+        Emprestimo emprestimo = emprestimoRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Emprestimo não encontrado"));
+
+        if (emprestimo.getStatus() != StatusEmprestimo.ATIVO)
+            throw new RegraDeNegocioException("O emprestimo não está ativo");
+
+        if (emprestimo.estaAtrasado(LocalDate.now()))
+            throw new RegraDeNegocioException("O emprestimo está atrasado");
+
+        if (emprestimo.getRenovacoes() == properties.maxRenovacoes())
+            throw new RegraDeNegocioException("O emprestimo já atingiu o limite de renovações");
+
+        // Impedir Renovação caso tenha reserva ativa de outro usuário para o livro
+
+        emprestimo.setDataPrevistaDevolucao(
+                emprestimo.getDataPrevistaDevolucao().plusDays(properties.renovacaoDias())
+        );
+
+        emprestimo.setRenovacoes((short) (emprestimo.getRenovacoes() + 1));
+
+        return EmprestimoResponseDTO.de(emprestimoRepository.save(emprestimo));
+    }
 }

@@ -41,6 +41,12 @@ public class EmprestimoController {
         return emprestimoService.devolver(id);
     }
 
+    @PostMapping("/{id}/renovacao")
+    public EmprestimoResponseDTO renovar(@PathVariable Long id,
+                                         Authentication auth) {
+        return emprestimoService.renovar(id, usuarioLogado(auth));
+    }
+
     private Usuario usuarioLogado(Authentication auth) {
         return usuarioService.buscarPorEmail(auth.getName());
     }
