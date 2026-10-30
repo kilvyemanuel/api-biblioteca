@@ -30,6 +30,12 @@ public class EmprestimoController {
         return emprestimoService.listarDoUsuario(usuarioLogado(auth).getId(), status, pageable);
     }
 
+    @GetMapping("/{id}")
+    public EmprestimoResponseDTO buscar(@PathVariable Long id,
+                                        Authentication auth) {
+        return emprestimoService.buscar(id, usuarioLogado(auth));
+    }
+
     private Usuario usuarioLogado(Authentication auth) {
         return usuarioService.buscarPorEmail(auth.getName());
     }

@@ -2,10 +2,12 @@ package com.projetos.biblioteca.emprestimo;
 
 import com.projetos.biblioteca.config.BibliotecaProperties;
 import com.projetos.biblioteca.exception.ConflitoException;
+import com.projetos.biblioteca.exception.RecursoNaoEncontradoException;
 import com.projetos.biblioteca.exception.RegraDeNegocioException;
 import com.projetos.biblioteca.exemplar.Exemplar;
 import com.projetos.biblioteca.exemplar.ExemplarRepository;
 import com.projetos.biblioteca.exemplar.StatusExemplar;
+import com.projetos.biblioteca.usuario.Papel;
 import com.projetos.biblioteca.usuario.Usuario;
 import com.projetos.biblioteca.usuario.UsuarioService;
 import lombok.RequiredArgsConstructor;
@@ -57,5 +59,16 @@ public class EmprestimoService {
 
         return emprestimoRepository.findByUsuarioId(usuarioId, pageable)
                 .map(EmprestimoResponseDTO::de);
+    }
+
+    @Transactional(readOnly = true)
+    public EmprestimoResponseDTO buscar(Long id, Usuario solicitante) {
+        Emprestimo emprestimo = emprestimoRepository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Emprestimo não encontrado"));
+
+        if (solicitante.getPapel() == Papel.MEMBRO && emprestimo.getUsuario().getId() != solicitante.getId())
+            throw new RecursoNaoEncontradoException("Emprestimo não encontrado");
+
+        return EmprestimoResponseDTO.de(emprestimo);
     }
 }
