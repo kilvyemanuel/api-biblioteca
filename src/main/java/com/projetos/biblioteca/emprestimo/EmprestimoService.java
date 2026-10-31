@@ -7,11 +7,12 @@ import com.projetos.biblioteca.exception.RegraDeNegocioException;
 import com.projetos.biblioteca.exemplar.Exemplar;
 import com.projetos.biblioteca.exemplar.ExemplarRepository;
 import com.projetos.biblioteca.exemplar.StatusExemplar;
+import com.projetos.biblioteca.reserva.ReservaRepository;
+import com.projetos.biblioteca.reserva.StatusReserva;
 import com.projetos.biblioteca.usuario.Papel;
 import com.projetos.biblioteca.usuario.Usuario;
 import com.projetos.biblioteca.usuario.UsuarioService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class EmprestimoService {
     private final UsuarioService usuarioService;
     private final ExemplarRepository exemplarRepository;
     private final BibliotecaProperties properties;
+    private final ReservaRepository reservaRepository;
 
     @Transactional
     public EmprestimoResponseDTO emprestar(EmprestimoRequestDTO req) {
@@ -49,6 +51,11 @@ public class EmprestimoService {
         emprestimo.setDataPrevistaDevolucao(LocalDate.now().plusDays(properties.prazoDias()));
 
         exemplar.setStatus(StatusExemplar.EMPRESTADO);
+
+        if (reservaRepository.existsByUsuarioIdAndLivroIdAndStatus(req.usuarioId(), req.livroId(), StatusReserva.ATIVA))
+            reservaRepository.findByUsuarioIdAndLivroIdAndStatus(req.usuarioId(), req.livroId(), StatusReserva.ATIVA)
+                    .setStatus(StatusReserva.ATENDIDA);
+
         return EmprestimoResponseDTO.de(emprestimoRepository.save(emprestimo));
     }
 
