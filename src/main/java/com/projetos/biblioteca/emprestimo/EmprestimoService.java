@@ -122,7 +122,9 @@ public class EmprestimoService {
         if (emprestimo.getRenovacoes() == properties.maxRenovacoes())
             throw new RegraDeNegocioException("O emprestimo já atingiu o limite de renovações");
 
-        // Impedir Renovação caso tenha reserva ativa de outro usuário para o livro
+        if (reservaRepository.existsByLivroIdAndStatusAndUsuarioIdNot(emprestimo.getExemplar().getLivro().getId(),
+                StatusReserva.ATIVA, solicitante.getId()))
+            throw new RegraDeNegocioException("Renovação negada, pois existe uma reserva ativa de outro usuário para este livro");
 
         emprestimo.setDataPrevistaDevolucao(
                 emprestimo.getDataPrevistaDevolucao().plusDays(properties.renovacaoDias())
