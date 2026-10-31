@@ -11,5 +11,6 @@ public interface ExemplarRepository extends JpaRepository<Exemplar, Long> {
     long countByLivroId(Long livroId);
     long countByLivroIdAndStatus(Long livroId, StatusExemplar status);
     boolean existsByLivroId(Long livroId);
+    boolean existsByLivroIdAndStatus(Long livroId, StatusExemplar status);
     boolean existsByCodigo(String codigo);
 }
