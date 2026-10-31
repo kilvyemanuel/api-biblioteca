@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long>, JpaSpecificationExecutor<Emprestimo> {
     long countByUsuarioIdAndStatus(Long usuarioId, StatusEmprestimo status);
     boolean existsByUsuarioIdAndMultaPagaFalseAndMultaGreaterThan(Long usuarioId, BigDecimal valor);
+    boolean existsByExemplarId(Long exemplarId);
     Page<Emprestimo> findByUsuarioId(Long usuarioId, Pageable pageable);
     Page<Emprestimo> findByUsuarioIdAndStatus(Long usuarioId, StatusEmprestimo status, Pageable pageable);
 }

@@ -1,5 +1,6 @@
 package com.projetos.biblioteca.exemplar;
 
+import com.projetos.biblioteca.emprestimo.EmprestimoRepository;
 import com.projetos.biblioteca.exception.ConflitoException;
 import com.projetos.biblioteca.exception.RecursoNaoEncontradoException;
 import com.projetos.biblioteca.livro.Livro;
@@ -15,6 +16,7 @@ import java.util.List;
 public class ExemplarService {
     private final ExemplarRepository exemplarRepository;
     private final LivroRepository livroRepository;
+    private final EmprestimoRepository emprestimoRepository;
 
     @Transactional(readOnly = true)
     public List<ExemplarResponseDTO> listar(Long livroId) {
@@ -58,7 +60,8 @@ public class ExemplarService {
         Exemplar exemplar = exemplarRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Exemplar não encontrado"));
 
-        //Exceção para não remover um exemplar com emprestimo vinculado
+        if (emprestimoRepository.existsByExemplarId(id))
+            throw new ConflitoException("Um exemplar com empréstimo cadastrado não pode ser excluído");
 
         exemplarRepository.delete(exemplar);
     }
