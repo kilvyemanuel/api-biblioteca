@@ -53,6 +53,12 @@ public class EmprestimoService {
     }
 
     @Transactional(readOnly = true)
+    public Page<EmprestimoResponseDTO> listar(EmprestimoFiltroDTO filtro, Pageable pageable) {
+        return emprestimoRepository.findAll(EmprestimoSpecs.comFiltro(filtro), pageable)
+                .map(EmprestimoResponseDTO::de);
+    }
+
+    @Transactional(readOnly = true)
     public Page<EmprestimoResponseDTO> listarDoUsuario(Long usuarioId, StatusEmprestimo status, Pageable pageable) {
         if (status != null)
             return emprestimoRepository.findByUsuarioIdAndStatus(usuarioId, status, pageable)

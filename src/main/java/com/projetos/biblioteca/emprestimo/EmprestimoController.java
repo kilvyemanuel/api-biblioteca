@@ -23,6 +23,12 @@ public class EmprestimoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(emprestimoService.emprestar(req));
     }
 
+    @GetMapping
+    public Page<EmprestimoResponseDTO> listar(EmprestimoFiltroDTO filtro,
+                                              Pageable pageable) {
+        return emprestimoService.listar(filtro, pageable);
+    }
+
     @GetMapping("/meus")
     public Page<EmprestimoResponseDTO> meus(@RequestParam(required = false) StatusEmprestimo status,
                                             Pageable pageable,
