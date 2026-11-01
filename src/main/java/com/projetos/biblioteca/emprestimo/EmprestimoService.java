@@ -12,6 +12,7 @@ import com.projetos.biblioteca.reserva.StatusReserva;
 import com.projetos.biblioteca.usuario.Papel;
 import com.projetos.biblioteca.usuario.Usuario;
 import com.projetos.biblioteca.usuario.UsuarioService;
+import jakarta.transaction.TransactionScoped;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -149,5 +151,11 @@ public class EmprestimoService {
         emprestimo.setMultaPaga(true);
 
         return EmprestimoResponseDTO.de(emprestimoRepository.save(emprestimo));
+    }
+
+    @Transactional(readOnly = true)
+    public List<Emprestimo> listarAtrasados() {
+        EmprestimoFiltroDTO filtroAtrasados = new EmprestimoFiltroDTO(null, null, true);
+        return emprestimoRepository.findAll(EmprestimoSpecs.comFiltro(filtroAtrasados));
     }
 }

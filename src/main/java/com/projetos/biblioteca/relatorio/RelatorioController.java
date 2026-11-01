@@ -18,4 +18,9 @@ public class RelatorioController {
     List<TopLivroResponseDTO> listarMaisEmprestados(@RequestParam Long limite) {
         return relatorioService.listarMaisEmprestado(limite);
     }
+
+    @GetMapping("/atrasados")
+    List<EmprestimoAtrasadoResponseDTO> listarAtrasados() {
+        return relatorioService.listarAtrasados();
+    }
 }
