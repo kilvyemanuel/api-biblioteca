@@ -5,6 +5,9 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 
 export default defineConfig({
   plugins: [tanstackStart(), react(), tailwindcss()],
+  resolve: {
+    tsconfigPaths: true,
+  },
   server: {
     host: true,
     port: 5173,
