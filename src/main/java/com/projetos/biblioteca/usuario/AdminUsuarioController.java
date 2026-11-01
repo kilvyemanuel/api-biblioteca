@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class AdminUsuarioController {
     @GetMapping("/usuarios")
     public Page<UsuarioAdminResponseDTO> listar(@RequestParam(required = false) Papel papel,
                                                 @RequestParam(required = false) Boolean ativo,
-                                                @PageableDefault(page = 0, size = 10) Pageable pageable) {
+                                                @PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
         return usuarioService.listar(papel, ativo, pageable);
     }
 

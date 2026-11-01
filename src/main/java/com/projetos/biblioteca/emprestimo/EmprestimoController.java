@@ -6,6 +6,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -25,13 +27,13 @@ public class EmprestimoController {
 
     @GetMapping
     public Page<EmprestimoResponseDTO> listar(EmprestimoFiltroDTO filtro,
-                                              Pageable pageable) {
+                                              @PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
         return emprestimoService.listar(filtro, pageable);
     }
 
     @GetMapping("/meus")
     public Page<EmprestimoResponseDTO> meus(@RequestParam(required = false) StatusEmprestimo status,
-                                            Pageable pageable,
+                                            @PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
                                             Authentication auth) {
         return emprestimoService.listarDoUsuario(usuarioLogado(auth).getId(), status, pageable);
     }

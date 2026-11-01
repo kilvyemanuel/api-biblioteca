@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class AutorController {
 
     @GetMapping
     public Page<AutorResponseDTO> listar(@RequestParam(required = false) String nome,
-                                         @PageableDefault(page = 0, size = 10) Pageable pageable) {
+                                         @PageableDefault(sort = "nome", direction = Sort.Direction.ASC) Pageable pageable) {
         return autorService.listar(nome, pageable);
     }
 
