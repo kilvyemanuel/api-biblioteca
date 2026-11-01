@@ -7,6 +7,7 @@ import com.projetos.biblioteca.exception.RegraDeNegocioException;
 import com.projetos.biblioteca.exemplar.Exemplar;
 import com.projetos.biblioteca.exemplar.ExemplarRepository;
 import com.projetos.biblioteca.exemplar.StatusExemplar;
+import com.projetos.biblioteca.relatorio.TopLivroResponseDTO;
 import com.projetos.biblioteca.reserva.ReservaRepository;
 import com.projetos.biblioteca.reserva.StatusReserva;
 import com.projetos.biblioteca.usuario.Papel;
@@ -15,6 +16,7 @@ import com.projetos.biblioteca.usuario.UsuarioService;
 import jakarta.transaction.TransactionScoped;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -151,6 +153,11 @@ public class EmprestimoService {
         emprestimo.setMultaPaga(true);
 
         return EmprestimoResponseDTO.de(emprestimoRepository.save(emprestimo));
+    }
+
+    @Transactional(readOnly = true)
+    public List<TopLivroResponseDTO> listarMaisEmprestados(Long limite) {
+        return emprestimoRepository.findLivrosMaisEmprestados(PageRequest.of(0, limite.intValue()));
     }
 
     @Transactional(readOnly = true)
