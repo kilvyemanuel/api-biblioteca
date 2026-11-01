@@ -1,0 +1,33 @@
+# Node / frontend
+node_modules/
+front-end/node_modules/
+front-end/dist/
+front-end/.next/
+front-end/.output/
+front-end/.vinxi/
+front-end/.tanstack/
+front-end/.nitro/
+front-end/.wrangler/
+front-end/.dev.vars
+
+# Java / backend
+back-end/target/
+back-end/.env
+
+# Generic env files
+.env
+.env.*
+!.env.example
+
+# IDE/editor files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

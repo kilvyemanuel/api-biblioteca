@@ -11,8 +11,8 @@
 	<groupId>com.projetos</groupId>
 	<artifactId>biblioteca</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
+	<name>biblioteca</name>
+	<description>API REST para gerenciamento de biblioteca</description>
 	<url/>
 	<licenses>
 		<license/>
