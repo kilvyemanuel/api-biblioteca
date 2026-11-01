@@ -10,6 +10,7 @@ import java.time.LocalDate;
 public record EmprestimoResponseDTO(
         Long id,
         Long usuarioId,
+        String usuarioNome,
         Long livroId,
         String tituloLivro,
         String codigoExemplar,
@@ -28,7 +29,7 @@ public record EmprestimoResponseDTO(
         Livro l = ex.getLivro();
 
         return new EmprestimoResponseDTO(
-                e.getId(), u.getId(), l.getId(), l.getTitulo(),
+                e.getId(), u.getId(), u.getNome(), l.getId(), l.getTitulo(),
                 ex.getCodigo(), e.getDataEmprestimo(), e.getDataPrevistaDevolucao(),
                 e.getDataDevolucao(), e.getRenovacoes(), e.getMulta(), e.isMultaPaga(),
                 e.getStatus(), e.estaAtrasado(LocalDate.now())
