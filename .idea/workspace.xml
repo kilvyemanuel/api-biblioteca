@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7ea859a8-81d6-48f0-a576-b34057dae428" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Projeto API de Biblioteca (especificação).pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/diagrama-classes-biblioteca.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/diagrama-er-biblioteca.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/BibliotecaApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/auth/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/auth/AuthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/auth/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/auth/JwtService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/auth/LoginRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/auth/RegistroRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/auth/TokenResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/auth/UserDetailsServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/autor/Autor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/autor/AutorController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/autor/AutorRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/autor/AutorRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/autor/AutorResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/autor/AutorService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/categoria/Categoria.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/categoria/CategoriaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/categoria/CategoriaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/categoria/CategoriaRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/categoria/CategoriaResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/categoria/CategoriaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/config/BibliotecaProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/emprestimo/Emprestimo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/emprestimo/EmprestimoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/emprestimo/EmprestimoFiltroDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/emprestimo/EmprestimoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/emprestimo/EmprestimoRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/emprestimo/EmprestimoResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/emprestimo/EmprestimoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/emprestimo/EmprestimoSpecs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/emprestimo/StatusEmprestimo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/exception/ConflitoException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/exception/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/exception/RecursoNaoEncontradoException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/exception/RegraDeNegocioException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/exemplar/AlterarStatusExemplarRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/exemplar/Exemplar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/exemplar/ExemplarController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/exemplar/ExemplarRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/exemplar/ExemplarRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/exemplar/ExemplarResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/exemplar/ExemplarService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/exemplar/StatusExemplar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/livro/Livro.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/livro/LivroController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/livro/LivroDetalheResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/livro/LivroFiltroDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/livro/LivroRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/livro/LivroRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/livro/LivroResumoResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/livro/LivroService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/livro/LivroSpecs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/relatorio/EmprestimoAtrasadoResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/relatorio/RelatorioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/relatorio/RelatorioService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/relatorio/TopLivroResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/reserva/Reserva.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/reserva/ReservaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/reserva/ReservaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/reserva/ReservaRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/reserva/ReservaResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/reserva/ReservaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/reserva/StatusReserva.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/usuario/AdminUsuarioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/usuario/AlterarAtivoRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/usuario/AlterarPapelRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/usuario/Papel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/usuario/Usuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/usuario/UsuarioAdminResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/usuario/UsuarioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/usuario/UsuarioRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/usuario/UsuarioResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/projetos/biblioteca/usuario/UsuarioService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__usuarios.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V2__catalogo.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V3__exemplares.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V4__emprestimos.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V5__reservas.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/projetos/biblioteca/BibliotecaApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/projetos/biblioteca/TestBibliotecaApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/projetos/biblioteca/TestcontainersConfiguration.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Record" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;kilvyemanuel&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kilvyemanuel/api-biblioteca.git&quot;,
+    &quot;accountId&quot;: &quot;dc90d8ec-a139-45ab-bd45-553ccb56aa92&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3LBuBItNotrxccN7FRmHjhYerGY" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.BibliotecaApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/projetos/biblioteca",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "nodejs_package_manager_path": "npm",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "ts.external.directory.path": "C:\\projetos\\biblioteca\\front-end\\node_modules\\typescript\\lib"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7ea859a8-81d6-48f0-a576-b34057dae428" name="Changes" comment="" />
+      <created>1792939645309</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1792939645309</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat(livros): adicionar filtro de disponibilidade e contagem de exemplares disponíveis" />
+    <MESSAGE value="feat(livros): adicionar contagem de exemplares no response" />
+    <MESSAGE value="fix(livros): corrigir validação de categoriaId no request de livro" />
+    <MESSAGE value="feat(database): criar esquema dos emprestimos da biblioteca" />
+    <MESSAGE value="feat(emprestimo): implementa criacao de emprestimos com validacao de regras de negocio" />
+    <MESSAGE value="feat(emprestimo): adiciona paginacao na consulta de emprestimos do usuario autenticado" />
+    <MESSAGE value="feat(emprestimo): implementa busca de emprestimo por ID" />
+    <MESSAGE value="feat(emprestimo): implementa devolucao de livro e calculo de multa" />
+    <MESSAGE value="feat(emprestimo): implementa renovacao de emprestimo com validacao de limite" />
+    <MESSAGE value="feat(emprestimo): adiciona restricao de acesso por propriedade do emprestimo" />
+    <MESSAGE value="feat(emprestimo): implementa registro de pagamento de multa" />
+    <MESSAGE value="feat(emprestimo): implementa rota de consulta geral de emprestimos com filtros e paginacao" />
+    <MESSAGE value="feat(exemplar): impede exclusao de exemplar com historico de emprestimos" />
+    <MESSAGE value="feat(database): criar esquema das reservas da biblioteca" />
+    <MESSAGE value="feat(reservas): mapear entidade reserva" />
+    <MESSAGE value="feat(reservas): implementar endpoints de reservas" />
+    <MESSAGE value="feat: registrar reserva como ATENDIDA após fazer o empréstimo" />
+    <MESSAGE value="feat: impede renovação do empréstimo caso exista uma reserva ativa para o livro de outro usuário" />
+    <MESSAGE value="feat(server): configurar CORS para permitir requisições externas" />
+    <MESSAGE value="feat: adicionar usuarioId e usuarioNome nos Responses de Emprestimo e Reserva" />
+    <MESSAGE value="feat: adicionar padrão de ordenação nas paginações" />
+    <MESSAGE value="fix: corrigir campo exemplaresDisponiveis em LivroResumoResponseDTO" />
+    <MESSAGE value="feat(relatorios): implementar listagem do ranking de livros com mais emprestimos" />
+    <MESSAGE value="feat(relatorios): implementar listagem dos empréstimos atrasados" />
+    <MESSAGE value="refactor: diminuir acoplamento na listagem dos livros com mais empréstimos" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: diminuir acoplamento na listagem dos livros com mais empréstimos" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
