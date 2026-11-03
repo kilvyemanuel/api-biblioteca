@@ -1,64 +1,81 @@
-# Biblioteca
+# Biblioteca API
 
-Este repositório contém o sistema completo de biblioteca, organizado em duas partes:
+![Java 21](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot 4](https://img.shields.io/badge/Spring%20Boot-4.1-6DB33F)
+![PostgreSQL 17](https://img.shields.io/badge/PostgreSQL-17-336791)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED)
 
-- `back-end`: API REST em Java + Spring Boot.
-- `front-end`: aplicação web em React + Vite.
-- `docker-compose.yml`: orquestra o banco PostgreSQL, a API e o frontend localmente.
+API REST para gerenciamento de uma biblioteca (catálogo, exemplares, empréstimos e reservas), com autenticação JWT e controle de acesso por papéis.
+
+## Tecnologias
+
+- Java 21 e Spring Boot 4.1 (Web, Data JPA, Validation, Security)
+- PostgreSQL 17 com migrações Flyway
+- Autenticação stateless com JWT (jjwt) e senhas com BCrypt
+- Documentação OpenAPI com Swagger UI (springdoc)
+- Docker e Docker Compose
+
+## Requisitos
+
+- Docker e Docker Compose
+- JDK 21 (apenas para rodar fora do Docker)
+
+## Como rodar
+
+### Com Docker
+
+```bash
+docker compose up --build db app
+```
+
+| Serviço | Endereço |
+|---|---|
+| API | http://localhost:8080 |
+| Swagger UI | http://localhost:8080/swagger-ui/index.html |
+| PostgreSQL | localhost:5432 |
+
+### Pela IDE ou terminal
+
+```bash
+docker compose up -d db
+cd back-end
+./mvnw spring-boot:run        # no Windows: mvnw.cmd spring-boot:run
+```
+
+### Primeiro acesso
+
+O cadastro (`POST /auth/registro`) sempre cria um usuário com papel `MEMBRO`. Para criar o primeiro administrador, promova-o direto no banco:
+
+```bash
+docker compose exec db psql -U biblioteca -d biblioteca \
+  -c "UPDATE usuario SET papel = 'ADMIN' WHERE email = 'seu@email.com';"
+```
+
+Depois, faça login em `POST /auth/login` e envie o token no cabeçalho `Authorization: Bearer <token>`.
+
+## Documentação da API
+
+Com a aplicação rodando, a documentação interativa fica em `/swagger-ui/index.html` e a especificação OpenAPI em `/v3/api-docs` (pode ser importada no Insomnia ou Postman).
+
+Os erros seguem o formato `ProblemDetail` (RFC 9457).
 
 ## Estrutura
 
-```text
-biblioteca/
-├── back-end/
-│   ├── src/
-│   ├── pom.xml
-│   └── Dockerfile
-├── front-end/
-│   ├── src/
-│   ├── package.json
-│   └── Dockerfile
+```
+.
 ├── docker-compose.yml
-├── README.md
-└── .gitignore
+├── back-end/
+│   ├── Dockerfile
+│   ├── docs/                  especificação e diagramas
+│   └── src/main/
+│       ├── java/com/projetos/biblioteca/
+│       │   ├── auth/          login, registro, JWT e filtro de autenticação
+│       │   ├── usuario/  categoria/  autor/  livro/  exemplar/
+│       │   ├── emprestimo/  reserva/  relatorio/
+│       │   ├── config/        segurança, CORS e propriedades
+│       │   └── exception/     tratamento global de erros
+│       └── resources/db/migration/   migrações Flyway (V1 a V5)
+└── front-end/                 interface React
 ```
 
-## Executando com Docker
-
-```bash
-docker compose up --build
-```
-
-- API: http://localhost:8080
-- Frontend: http://localhost:5173
-- PostgreSQL: localhost:5432
-
-## Executando localmente
-
-### Backend
-
-```bash
-cd back-end
-./mvnw spring-boot:run
-```
-
-### Frontend
-
-```bash
-cd front-end
-npm install
-npm run dev
-```
-
-## Verificações úteis
-
-```bash
-cd back-end && ./mvnw test
-cd front-end && npm test -- --run
-```
-
-## Observações
-
-- O backend usa PostgreSQL e Flyway para migrações.
-- O frontend pode consumir a API configurada pelo ambiente local ou pela tela de configurações.
-- Arquivos gerados e caches (como `node_modules`, `target`, `.idea`) devem permanecer fora do controle de versão.
+Cada módulo segue o fluxo Controller, Service e Repository, e as respostas da API usam DTOs em vez de entidades.
